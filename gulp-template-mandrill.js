@@ -19,7 +19,8 @@ function gulpTemplateMandrill(opts) {
   var mandrill = new mandrillApi.Mandrill(opts.key);
 
   return through.obj(function (file, encoding, callback) {
-    var params = {};
+    var params = {}
+      templateUnknown = false;
 
     if(file.isNull()) {
       return callback(null, file);
@@ -42,14 +43,28 @@ function gulpTemplateMandrill(opts) {
         ).toString();
 
       // send to api via mandrill-api
-      mandrill.templates.add(
+      mandrill.templates.update( 
         params,
         function (result) {
-          console.log(result);
+          console.log('Updated template:', result.slug);
         },
         function (e) {
-          throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' +
-            e.name + ' - ' + e.message);
+          // If the template doesn't exist, add it
+          if(e.name === 'Unknown_Template') {
+            mandrill.templates.add(
+              params,
+              function (result) {
+                console.log('New template', result.slug);
+              },
+              function (e) {
+                throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' +
+                  e.name + ' - ' + e.message);
+              }
+            );
+          } else {
+            throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' +
+              e.name + ' - ' + e.message);
+          }
         }
       );
     }

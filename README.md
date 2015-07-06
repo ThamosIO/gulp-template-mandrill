@@ -1,1 +1,1 @@
-# gulp-api-mandrill
+# gulp-template-mandrill

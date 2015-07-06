@@ -1,0 +1,29 @@
+{
+  "name": "gulp-template-mandrill",
+  "version": "0.0.1",
+  "description": "A gulp plugin for templates for Mandrill Api",
+  "author": "Thomas Raimond (https://github.com/Polyethylene)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Polyethylene/gulp-api-mandrill"
+  },
+  "engines": {
+    "node": ">= 0.10.32"
+  },
+  "homepage": "https://github.com/Polyethylene/gulp-api-mandrill",
+  "keywords": [
+    "mandrill",
+    "gulp mandrill",
+    "mandrill api",
+    "mandrill templates",
+    "mandrill api templates",
+    "gulpplugin"
+  ],
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "mandrill-api": "^1.0.45",
+    "through2": "^2.0.0"
+  }
+}

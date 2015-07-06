@@ -19,7 +19,7 @@ function gulpTemplateMandrill(opts) {
   var mandrill = new mandrillApi.Mandrill(opts.key);
 
   return through.obj(function (file, encoding, callback) {
-    var params = {}
+    var params = {},
       templateUnknown = false;
 
     if(file.isNull()) {

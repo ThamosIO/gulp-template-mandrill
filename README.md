@@ -1,6 +1,6 @@
 # gulp-template-mandrill
 
-`gulp-template-mandrill` allows to upload new templates to your Mandrill account via the Mandrill API.
+`gulp-template-mandrill` allows to upload new templates or update existing ones to your Mandrill account via the Mandrill API.
 
 ## Usage
 
@@ -13,7 +13,7 @@ gulp.task('mailTemplates', function(){
 });
 ```
 
-You need to have `.json` file that contains the Mandrill information for your template, with the same name as the `html` file it refers to.
+You need to have a `.json` file that contains the Mandrill information for your template, with the same name as the `html` file it refers to.
 
 Such as :
 
@@ -41,6 +41,11 @@ Where foo.json contains **at least a name attribute** for the template:
 ```
 
 See [Mandrill API docs](https://mandrillapp.com/api/docs/templates.nodejs.html) for reference.
+
+## Features
+
+- Add new template
+- Update existing template
 
 ## TODO
 

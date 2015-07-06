@@ -36,7 +36,7 @@ Where foo.json contains **at least a name attribute** for the template:
   "publish": false,
   "labels": [
     "example-label"
-  ];
+  ]
 }
 ```
 

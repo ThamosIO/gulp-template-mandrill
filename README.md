@@ -11,12 +11,13 @@ gulp.task('mailTemplates', function(){
   return gulp.src(pathToTemplates)
     .pipe(gulpTemplateMandrill({
       key: 'insert mandrill api key here',
-      [JSONpath: './other/json/*.json']
+      JSONpath: './other/json/' // optional
     }));
 });
 ```
 
 You need to have a `.json` file that contains the Mandrill information for your template, with the same name as the `html` file it refers to.
+If it's in the same folder as your `.html`, you don't need to specify `JSONpath`.
 
 Such as :
 

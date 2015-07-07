@@ -6,12 +6,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Polyethylene/gulp-api-mandrill"
+    "url": "http://github.com/Polyethylene/gulp-template-mandrill"
   },
   "engines": {
     "node": ">= 0.10.32"
   },
-  "homepage": "https://github.com/Polyethylene/gulp-api-mandrill",
+  "homepage": "https://github.com/Polyethylene/gulp-template-mandrill",
   "keywords": [
     "mandrill",
     "gulp mandrill",

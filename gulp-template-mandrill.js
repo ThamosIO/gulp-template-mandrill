@@ -16,6 +16,8 @@ function gulpTemplateMandrill(opts) {
       PLUGIN_NAME);
   }
 
+  // If no path for JSON is set, use the same as the html files
+  var JSONpath = opts.JSONpath || file.path.replace('html', 'json');
   var mandrill = new mandrillApi.Mandrill(opts.key);
 
   return through.obj(function (file, encoding, callback) {
@@ -27,10 +29,8 @@ function gulpTemplateMandrill(opts) {
     }
 
     if(file.isBuffer()) {
-      var tplParams = file.path.replace('html', 'json');
-      // check if there's a json with the same name as the file
       try {
-        params = JSON.parse(fs.readFileSync(tplParams));
+        params = JSON.parse(fs.readFileSync(JSONpath));
       } catch (e) {
         throw new PluginError(PLUGIN_NAME, e.name + ' - ' + e.message + '\n' +
           PLUGIN_NAME + ': You should have a .json file for every .html file.');

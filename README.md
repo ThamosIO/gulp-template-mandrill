@@ -9,7 +9,10 @@ To use `gulp-template-mandrill`, do :
 ```javascript
 gulp.task('mailTemplates', function(){
   return gulp.src(pathToTemplates)
-    .pipe(gulpTemplateMandrill({key: 'insert mandrill api key here'}));
+    .pipe(gulpTemplateMandrill({
+      key: 'insert mandrill api key here',
+      [JSONpath: './other/json/*.json']
+    }));
 });
 ```
 

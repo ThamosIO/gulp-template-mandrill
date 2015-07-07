@@ -1,6 +1,6 @@
 {
   "name": "gulp-template-mandrill",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A gulp plugin for templates for Mandrill Api",
   "author": "Thomas Raimond (https://github.com/Polyethylene)",
   "main": "index.js",

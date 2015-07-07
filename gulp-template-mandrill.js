@@ -2,6 +2,7 @@ var through   = require('through2'),
   mandrillApi = require('mandrill-api'),
   gutil       = require('gulp-util'),
   fs          = require('fs'),
+  path        = require('path'),
   html2txt    = require('html-to-text');
   PluginError = gutil.PluginError;
 
@@ -17,7 +18,6 @@ function gulpTemplateMandrill(opts) {
   }
 
   // If no path for JSON is set, use the same as the html files
-  var JSONpath = opts.JSONpath || file.path.replace('html', 'json');
   var mandrill = new mandrillApi.Mandrill(opts.key);
 
   return through.obj(function (file, encoding, callback) {
@@ -30,6 +30,9 @@ function gulpTemplateMandrill(opts) {
 
     if(file.isBuffer()) {
       try {
+        var fpath = file.path.replace('html', 'json');
+        var JSONpath = opts.JSONpath ?
+          path.join(opts.JSONpath, path.basename(fpath)) : fpath;
         params = JSON.parse(fs.readFileSync(JSONpath));
       } catch (e) {
         throw new PluginError(PLUGIN_NAME, e.name + ' - ' + e.message + '\n' +

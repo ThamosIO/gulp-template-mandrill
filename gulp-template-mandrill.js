@@ -46,10 +46,11 @@ function gulpTemplateMandrill(opts) {
         ).toString();
 
       // send to api via mandrill-api
-      mandrill.templates.update( 
+      mandrill.templates.update(
         params,
         function (result) {
-          console.log('Updated template:', result.slug);
+          gutil.log('Updated template:', result.slug);
+          callback(null, file);
         },
         function (e) {
           // If the template doesn't exist, add it
@@ -57,22 +58,19 @@ function gulpTemplateMandrill(opts) {
             mandrill.templates.add(
               params,
               function (result) {
-                console.log('New template', result.slug);
+                gutil.log('New template:', result.slug);
+                callback(null, file);
               },
               function (e) {
-                throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' +
-                  e.name + ' - ' + e.message);
+                throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' + e.name + ' - ' + e.message);
               }
             );
           } else {
-            throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' +
-              e.name + ' - ' + e.message);
+            throw new PluginError(PLUGIN_NAME, 'Mandrill error occurred: ' + e.name + ' - ' + e.message);
           }
         }
       );
     }
-
-    callback(null, file);
   });
 }
 

@@ -39,11 +39,23 @@ function gulpTemplateMandrill(opts) {
           PLUGIN_NAME + ': You should have a .json file for every .html file.');
       }
 
+      try {
+        var fpath = file.path.replace('html', 'txt');
+        var txtPath = opts.JSONpath ?
+          path.join(opts.JSONpath, path.basename(fpath)) : fpath;
+        params.text = fs.readFileSync(txtPath).toString();
+      } catch (e) {
+
+      }
+
       // set html and txt from file
       params.code = file.contents.toString();
-      params.text = new Buffer(
-          html2txt.fromString(file.contents.toString())
-        ).toString();
+
+      if(!params.text){
+        params.text = new Buffer(
+            html2txt.fromString(file.contents.toString())
+          ).toString();
+      }
 
       // send to api via mandrill-api
       mandrill.templates.update(
